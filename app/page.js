@@ -1,65 +1,84 @@
-import Image from "next/image";
+// app/page.js
+import Link from "next/link"
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      {/* Navbar */}
+      <nav className="flex justify-between items-center px-8 py-4 border-b border-gray-700">
+        <h1 className="text-xl font-bold">ChangelogAI</h1>
+        <Link 
+          href="/dashboard"
+          className="bg-white text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition"
+        >
+          Get Started
+        </Link>
+      </nav>
+
+      {/* Hero Section */}
+      <main className="flex flex-col items-center justify-center px-8 py-20 text-center">
+        <div className="inline-block px-4 py-1 bg-gray-700 rounded-full text-sm mb-6">
+          ✨ Turn messy commits into beautiful changelogs
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        
+        <h2 className="text-5xl font-bold mb-6 leading-tight">
+          AI-Powered Changelog<br />Generator for Developers
+        </h2>
+        
+        <p className="text-gray-400 text-lg max-w-xl mb-8">
+          Connect your GitHub repo, select a date range, and let AI transform 
+          your commit history into clean, professional release notes.
+        </p>
+
+        <div className="flex gap-4">
+          <Link
+            href="/dashboard"
+            className="bg-amber-700 px-5 py-3 rounded-lg font-medium transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Connect GitHub
+          </Link>
+          <Link
+            href="#features"
+            className="border border-gray-600 hover:border-gray-500 px-6 py-3 rounded-lg font-medium transition"
           >
-            Documentation
-          </a>
+            See Features
+          </Link>
+        </div>
+
+        {/* Features Section */}
+        <div id="features" className="grid md:grid-cols-3 gap-8 mt-24 max-w-4xl">
+          <FeatureCard 
+            emoji="🔗"
+            title="GitHub Integration"
+            description="Connect your repos with one click. We fetch commits and PRs automatically."
+          />
+          <FeatureCard 
+            emoji="🤖"
+            title="AI-Powered"
+            description="Smart categorization into features, fixes, and improvements."
+          />
+          <FeatureCard 
+            emoji="📝"
+            title="Export Anywhere"
+            description="Copy as Markdown, download as file, or share a public link."
+          />
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="text-center py-8 text-gray-500 border-t border-gray-700">
+        Built for developers who hate writing changelogs
+      </footer>
     </div>
-  );
+  )
+}
+
+function FeatureCard({ emoji, title, description }) {
+  return (
+    <div className="bg-gray-800 p-6 rounded-xl text-left">
+      <div className="text-3xl mb-3">{emoji}</div>
+      <h3 className="font-semibold text-lg mb-2">{title}</h3>
+      <p className="text-gray-400 text-sm">{description}</p>
+    </div>
+  )
 }
